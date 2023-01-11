@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<robot name="stereo_description" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- include the stereo_camera macro -->
+  <xacro:include filename="$(find side_x_side_stereo)/description/stereo_camera.urdf.xacro"/>
+
+  <!-- use the stereo_camera macro to create a camera with name "elp" -->
+  <xacro:stereo_camera name="stereo"/>
+</robot>
+
