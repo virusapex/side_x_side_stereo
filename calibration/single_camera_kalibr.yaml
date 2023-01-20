@@ -1,0 +1,8 @@
+input_camera:
+  camera_model: pinhole
+  intrinsics: [1615.30341876, 1618.22228682, 928.74750789, 650.66447802]
+  distortion_model: equidistant
+  distortion_coeffs: [-0.09668252, -0.10145078,  0.36715663, -0.34675311]
+  rostopic: /usb_cam/image_raw
+  resolution: [1920, 1080]
+

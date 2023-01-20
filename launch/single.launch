@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="calib_path" default="$(find side_x_side_stereo)/calibration/single_camera_kalibr.yaml"/>
+
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen">
+    <param name="video_device" value="/dev/video0" />
+    <param name="camera_name" value="single" />
+    <param name="image_width" value="1920" />
+    <param name="image_height" value="1080" />
+    <param name="pixel_format" value="mjpeg" />
+    <param name="camera_frame_id" value="camera_frame" />
+    <param name="io_method" value="mmap" />
+    <param name="framerate" value="60" />
+    <param name="autofocus" value="true" />
+  </node>
+  
+  <rosparam file="$(arg calib_path)"/>
+  
+  <node name="undistort" pkg="image_undistort" type="image_undistort_node" output="screen">
+    
+    <param name="input_camera_info_from_ros_params" value="true"/>
+    <param name="input_camera_namespace" value="/input_camera"/>
+    <remap from="input/image" to="/usb_cam/image_raw"/>
+    <remap from="input/camera_info" to="/usb_cam/camera_info"/>
+  </node>
+
+</launch>
+
